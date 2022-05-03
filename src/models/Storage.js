@@ -16,6 +16,6 @@ const storageSchema = new Schema({
 }
 );
 
-const Storage = mongoose.model('Storage', userSchema,'storage');
+const Storage = mongoose.model('Storage', storageSchema,'storage');
 
 module.exports = Storage;
