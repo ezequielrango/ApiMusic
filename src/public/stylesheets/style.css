@@ -1,0 +1,25 @@
+*{
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  list-style: none;
+}
+
+body{
+  background: #833ab4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #fcb045, #fd1d1d, #833ab4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  height: 700px;
+}
+.title{
+  text-align: center;
+}
+.containerP{
+  width: 50%;
+  margin: 7% auto;
+}
+p{
+  text-align: left;
+}
