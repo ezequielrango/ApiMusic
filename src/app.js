@@ -17,9 +17,9 @@ const dbConnect = require('./bin/dbConnect')
 //     .catch(e => console.log(e));
 
 // import routes
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/user');
-const tracksRouter = require('./routes/tracks');
+// const indexRouter = require('./routes/index');
+// const usersRouter = require('./routes/user');
+// const tracksRouter = require('./routes/tracks');
 
 
 const app = express();
@@ -31,10 +31,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api ', indexRouter);
-app.use('/users', usersRouter);
-app.use('/api/tracks', tracksRouter);
-
-
+// app.use('/api ', indexRouter);
+// app.use('/users', usersRouter);
+app.use('/api',require("./routes"));
 
 module.exports = app;

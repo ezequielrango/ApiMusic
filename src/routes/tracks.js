@@ -5,7 +5,7 @@ router.get('/', (req,res) => {
 
     const data = ['hola','chau']
 
-    res.send({data});
+    res.send({data :data});
 })
 
 module.exports = router;
