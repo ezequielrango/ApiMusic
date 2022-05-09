@@ -1,11 +1,15 @@
 const express= require('express');
 const router = express.Router();
+const {getAll,getOne,create,update,remove} = require('../controllers/tracks');
 
-router.get('/', (req,res) => {
+router.get('/', getAll);
 
-    const data = ['hola','chau']
+router.get('/:id', getOne);
 
-    res.send({data :data});
-})
+router.post('/', create);
+
+router.put('/:id', update);
+
+router.delete('/:id', remove);
 
 module.exports = router;

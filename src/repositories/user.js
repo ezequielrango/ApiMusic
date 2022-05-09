@@ -1,4 +1,4 @@
-const  User  = require('../models/User');
+const  User  = require('../models/nosql/User');
 
 module.exports = {
   getAll: () => User.find(),
