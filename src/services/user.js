@@ -14,7 +14,7 @@ module.exports = {
         const oneUser = await UsersRepository.getOne();
         res.status(200).json({ data : oneUser });
       } catch (error) {
-        res.status(500).json("internal server error")
+        res.status(500).json("internal server errorSERVICES")
       }
     }
 }

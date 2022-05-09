@@ -14,7 +14,7 @@ const controller = {
         const oneUser = await userService.getOne(req,res);
         res.status(200).json({ data:oneUser});
       } catch (error) {
-        res.status(500).json("internal server error");
+        res.status(500).json("internal server errorCONTROLLER");
       }
     }
 }
