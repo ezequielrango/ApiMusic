@@ -2,6 +2,7 @@ const express= require('express');
 const router = express.Router();
 const {getAll,getOne,create,update,remove} = require('../controllers/tracks');
 const {validatorCreate} = require('../validator/tracks');
+const {handleHttpError} = require('../utils/handleErrors');
 
 
 router.get('/', getAll);
