@@ -10,12 +10,22 @@ const getAll = async (req,res) => {
         res.send({data});
         
     } catch (err) {
-        handleHttpError(res,'The requested resources were not obtained')
-    }
+        handleHttpError(res,'The requested resources were not obtained');
+    };
 };
 
 
-const getOne = (req,res) => {};
+const getOne = async (req,res) => {
+    try {
+        req = matchedData(req); // validate- filter id
+        const {id} = req;
+        const data = await tracksModel.findById(id);
+        res.send({data});
+        
+    } catch (err) {
+        handleHttpError(res,'The requested resources were not obtained', 404);
+    };
+};
 
 
 const create = async (req,res) => {
@@ -31,7 +41,18 @@ const create = async (req,res) => {
 };
 
 
-const update = (req,res) => {};
+const update = async (req,res) => {
+    try {
+     
+        const {id, ...body} = matchedData(req);
+        const data = await tracksModel.findOneAndUpdate(id.body);
+        console.log(body);
+        res.send({data})
+        
+    } catch (err) {
+        handleHttpError(res,'Error update');
+    }
+};
 
 
 const remove = (req,res) => {};
