@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongooseDelete = require('mongoose-delete');
+
 
 const trackSchema = new mongoose.Schema(
     {
@@ -46,4 +48,8 @@ const trackSchema = new mongoose.Schema(
     }
 );
 
+trackSchema.plugin(mongooseDelete,{ overrideMethods : "all"}); //Sobreescribe los metodos nativos de mongoose
+// En los registros de la db aparece una propiedad ´deleted : false´, indicando que no se le ha aplicado un borrado lógico 
+// si elimino aparece en true
+// si listo items no aparece
 module.exports = mongoose.model("Tracks",trackSchema, "tracks");

@@ -13,6 +13,6 @@ router.post('/',validatorCreate, create);
 
 router.put('/:id',validatorGetItem,validatorCreate, update);
 
-router.delete('/:id', remove);
+router.delete('/:id',validatorGetItem, remove);
 
 module.exports = router;

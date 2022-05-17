@@ -55,7 +55,18 @@ const update = async (req,res) => {
 };
 
 
-const remove = (req,res) => {};
+const remove = async (req,res) => {
+    try {
+        req = matchedData(req); // validate- filter id
+        const {id} = req;
+        const data = await tracksModel.delete({_id:id});
+        res.send({data});
+        
+    } catch (err) {
+        console.log(err);
+        handleHttpError(res,'Error Delete');
+    };
+};
 module.exports = {
     getAll,
     getOne,
