@@ -1,26 +1,39 @@
 const {storageModel} = require('../models');
 const PUBLIC_URL = process.env.PUBLIC_URL;
+const {handleHttpError} = require('../utils/handleErrors');
 
 
 const getAll = async (req,res) => {
-    const data = await storageModel.find({})
-    res.send({data});
+    try {
+        const data = await storageModel.find({})
+        res.send({data});
+    } catch (err) {
+        handleHttpError(res,'The requested resources were not obtained')
+    }
 };
-const getOne = (req,res) => {};
+const getOne = async (req,res) => {
+    try {
+        req = matchedData(req); // validate- filter id
+        const {id} = req;
+        const data = await storageModel.findById(id);
+        res.send({data});
+        
+    } catch (err) {
+        handleHttpError(res,'The requested resources were not obtained', 404);
+    };
+};
 
 const create = async (req,res) => {
-    const {body,file} = req;
-    const data = await storageModel.create(body);
+    const {file} = req;
     const fileData = {
         filename : file.filename,
         url : `PUBLIC_URL/${file.filename}` ,
-        data
     }
-    console.log(fileData);
-    res.send({file})
+    const data = await storageModel.create(fileData);
+    res.send({data})
 };
-const update = (req,res) => {};
-const remove = (req,res) => {};
+const update =  async (req,res) => {};
+const remove = async  (req,res) => {};
 module.exports = {
     getAll,
     getOne,
