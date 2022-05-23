@@ -35,18 +35,20 @@ const create = async (req,res) => {
     const data = await storageModel.create(fileData);
     res.send({data})
 };
-const update =  async (req,res) => {};
+
 
 const remove = async  (req,res) => {
     try {
         req = matchedData(req); // validate- filter id
         const {id} = req;
         const dataFile = await storageModel.findById(id);
+        // await storageModel.deleteOne(id); // elimiancion permanente de db
+        await storageModel.delete({_id:id}); // soft delete
         const {filename} = dataFile;
         const filePath =`${MEDIA_PATH}/${filename}`;
 
-        fs.unlinkSync(filePath);
 
+        // fs.unlinkSync(filePath);  comentado se mantiene media, sino se elimina
         const data = {
             filePath,
             deleted : 1
@@ -62,6 +64,5 @@ module.exports = {
     getAll,
     getOne,
     create,
-    update,
     remove
 }
