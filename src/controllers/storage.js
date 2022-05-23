@@ -27,13 +27,17 @@ const getOne = async (req,res) => {
 };
 
 const create = async (req,res) => {
-    const {file} = req;
-    const fileData = {
-        filename : file.filename,
-        url : `${PUBLIC_URL}/${file.filename}` ,
-    }
-    const data = await storageModel.create(fileData);
-    res.send({data})
+    try {
+        const {file} = req;
+        const fileData = {
+            filename : file.filename,
+            url : `${PUBLIC_URL}/${file.filename}` ,
+        }
+        const data = await storageModel.create(fileData);
+        res.send({data})    
+    } catch (err) {
+        handleHttpError(res,'Error create', 400);
+    };
 };
 
 
