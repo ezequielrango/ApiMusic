@@ -24,4 +24,12 @@ const register = async (req , res) => {
     }
 };
 
-module.exports = { register };
+const login = async (req,res) =>{
+    try {
+        
+    } catch (error) {
+        handleHttpError(res,'Internal Server Error', 500);
+    }
+}
+
+module.exports = { register, login };
