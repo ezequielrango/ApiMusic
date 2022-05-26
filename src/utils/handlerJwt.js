@@ -4,7 +4,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const {handleHttpError} = require('../utils/handleErrors');
 
 
-const tokenSign = async () => {
+const tokenSign = async (user) => {
 
     const sign = jwt.sign(
         {
