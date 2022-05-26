@@ -15,7 +15,8 @@ const userSchema = new Schema({
         unique: true
     },
     password : {
-        type : String
+        type : String,
+        select:false, // en Res no devuelve password
     },
     role: {
         type: ["user","admin"],
