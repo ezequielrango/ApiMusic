@@ -20,15 +20,35 @@ const register = async (req , res) => {
         res.send({data});
         
     } catch (error) {
-        handleHttpError(res,'Internal Server Error', 500);
+        handleHttpError(res,'Error register user');
     }
 };
 
 const login = async (req,res) =>{
     try {
-        
+        req = matchedData(req);
+        const {email,password} = req;
+        const user = await usersModel.findOne({email : email}).select('password name role email')
+        if (!user) {
+            handleHttpError(res,'User not exists',404);
+            return;
+        };
+        const hashPassword =  user.password;
+        console.log(hashPassword);
+        const check = await compare(password,hashPassword);
+        if (!check) {
+            handleHttpError(res,'Password incorrect',401);
+            return
+        };
+        user.set('password', undefined,{strict:false});
+        const data = {
+            token : await tokenSign(user),
+            user
+        };
+
+        res.send({data})
     } catch (error) {
-        handleHttpError(res,'Internal Server Error', 500);
+        handleHttpError(res,'Error login user');
     }
 }
 
