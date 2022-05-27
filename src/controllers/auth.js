@@ -34,13 +34,12 @@ const login = async (req,res) =>{
             return;
         };
         const hashPassword =  user.password;
-        console.log(hashPassword);
         const check = await compare(password,hashPassword);
         if (!check) {
             handleHttpError(res,'Password incorrect',401);
             return
         };
-        user.set('password', undefined,{strict:false});
+        user.set('password', undefined,{strict:false}); 
         const data = {
             token : await tokenSign(user),
             user
