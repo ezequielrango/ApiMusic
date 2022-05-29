@@ -6,8 +6,9 @@ const {handleHttpError} = require('../utils/handleErrors');
 
 const getAll = async (req,res) => {
     try {
+        const user = await req.user;
         const data = await tracksModel.find({})
-        res.send({data});
+        res.send({data,user});
         
     } catch (err) {
         handleHttpError(res,'The requested resources were not obtained');
