@@ -7,12 +7,12 @@ const {auth} = require('../middlewares/session');
 
 router.get('/',auth, getAll);
 
-router.get('/:id',validatorGetItem, getOne);
+router.get('/:id',auth,validatorGetItem, getOne);
 
-router.post('/',validatorCreate, create);
+router.post('/',auth,validatorCreate, create);
 
-router.put('/:id',validatorGetItem,validatorCreate, update);
+router.put('/:id',auth,validatorGetItem,validatorCreate, update);
 
-router.delete('/:id',validatorGetItem, remove);
+router.delete('/:id',auth,validatorGetItem, remove);
 
 module.exports = router;
