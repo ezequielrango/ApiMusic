@@ -16,7 +16,7 @@ const auth = async (req, res ,next) => {
          if (!dataToken._id) {
             handleHttpError(res,'Error ID Token',401);
          }
-         const user = getUserByToken(dataToken._id);
+         const user = await getUserByToken(dataToken._id);
          req.user = user;
          next();
     } catch (error) {
