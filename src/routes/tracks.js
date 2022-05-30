@@ -11,8 +11,8 @@ router.get('/:id',auth,validatorGetItem, getOne);
 
 router.post('/',auth,checkRol(['admin']),validatorCreate, create);
 
-router.put('/:id',auth,checkRol,validatorGetItem,validatorCreate, update);
+router.put('/:id',auth,checkRol(['admin']),validatorGetItem,validatorCreate, update);
 
-router.delete('/:id',auth,checkRol,validatorGetItem, remove);
+router.delete('/:id',auth,checkRol(['admin']),validatorGetItem, remove);
 
 module.exports = router;
