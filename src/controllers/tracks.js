@@ -6,9 +6,8 @@ const {handleHttpError} = require('../utils/handleErrors');
 
 const getAll = async (req,res) => {
     try {
-        const user = await req.user;
-        const data = await tracksModel.find({})
-        res.send({data,user});
+        const data = await tracksModel.find({})  
+        res.send({data});
         
     } catch (err) {
         handleHttpError(res,'The requested resources were not obtained');
@@ -31,10 +30,10 @@ const getOne = async (req,res) => {
 
 const create = async (req,res) => {
     try {
+        const user = await req.user;
         const body = matchedData(req); // Function cleaner req.body data
         const data = await tracksModel.create(body);
-        console.log(body);
-        res.send({data})
+        res.send({data,user})
         
     } catch (err) {
         handleHttpError(res,'The resource could not be created');
