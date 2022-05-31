@@ -1,6 +1,6 @@
 const userService = require('../services/user');
 
-const controller = {
+module.exports= {
     getAll: async (req, res) => {
       try {
         const users = await userService.getAll(req, res);
@@ -18,5 +18,5 @@ const controller = {
       }
     }
 }
-  module.exports = controller;
+
 
