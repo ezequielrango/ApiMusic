@@ -1,15 +1,27 @@
-// const { matchedData } = require('express-validator');
-// const {tracksModel} = require('../models');
+const { matchedData } = require('express-validator');
 // const {handleHttpError} = require('../utils/handleErrors');
 const tracksService = require('../services/tracks');
 const {handleHttpError} = require('../utils/handleErrors');
+const  {RequestAuthor} = require('../utils/handleRequestUser');
+
 
 module.exports = {
+
     getAll: async (req, res) => {
             const tracks = await tracksService.getAll(req, res);
-            return res.send({response:tracks.response});
+            return res.status(tracks.status).json({tracks});
       },
-}
+      
+    getOne: async (req, res) => {
+            req = matchedData(req); // validate- filter id
+            const user = await RequestAuthor(req); //REVISAR undefined
+            console.log(user); // REVISAR undefined
+            const {id} = req;
+            const track = await tracksService.getOne(id);
+            return res.status(track.status).json(track);
+      },
+      
+}  
 
 
 // const getAll = async (req,res) => {
@@ -37,31 +49,31 @@ module.exports = {
 // };
 
 
-// const create = async (req,res) => {
-//     try {
-//         const user = await req.user;
-//         const body = matchedData(req); // Function cleaner req.body data
-//         const data = await tracksModel.create(body);
-//         res.send({data,user})
+const create = async (req,res) => {
+    try {
+        const user = await req.user;
+        const body = matchedData(req); // Function cleaner req.body data
+        const data = await tracksModel.create(body);
+        res.send({data,user})
         
-//     } catch (err) {
-//         handleHttpError(res,'The resource could not be created');
-//     }
-// };
+    } catch (err) {
+        handleHttpError(res,'The resource could not be created');
+    }
+};
 
 
-// const update = async (req,res) => {
-//     try {
+const update = async (req,res) => {
+    try {
      
-//         const {id, ...body} = matchedData(req);
-//         const data = await tracksModel.findOneAndUpdate(id.body);
-//         console.log(body);
-//         res.send({data})
+        const {id, ...body} = matchedData(req);
+        const data = await tracksModel.findOneAndUpdate(id.body);
+        console.log(body);
+        res.send({data})
         
-//     } catch (err) {
-//         handleHttpError(res,'Error update');
-//     }
-// };
+    } catch (err) {
+        handleHttpError(res,'Error update');
+    }
+};
 
 
 // const remove = async (req,res) => {

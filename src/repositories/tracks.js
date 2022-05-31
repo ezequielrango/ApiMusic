@@ -5,7 +5,9 @@ module.exports = {
         const tracks = await tracksModel.find({});
         return tracks;
       },
-    
-    
+    getOne: async (id) => {
+        const track = await tracksModel.findById(id);
+        return track;
+    },
 }
 

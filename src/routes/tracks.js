@@ -7,7 +7,7 @@ const {checkRol} = require('../middlewares/role');
 
 router.get('/',auth, tracksController.getAll);
 
-// router.get('/:id',auth,validatorGetItem, getOne);
+router.get('/:id',auth,validatorGetItem, tracksController.getOne);
 
 // router.post('/',auth,checkRol(['admin']),validatorCreate, create);
 
