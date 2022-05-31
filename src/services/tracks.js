@@ -32,4 +32,13 @@ module.exports = {
       return { status: 500, response: 'Internal Server Error' };
     };
   },
+  create: async(data) =>{
+    try {
+      const newTrack = await tracksRepository.create(data);
+      return { status: 201, response: newTrack }; 
+
+    } catch (error) {
+      return { status: 500, response: 'Internal Server Error' };
+    };
+  },
 };

@@ -20,7 +20,11 @@ module.exports = {
             const track = await tracksService.getOne(id);
             return res.status(track.status).json(track);
       },
-      
+    create: async (req,res) => {
+            const body = matchedData(req);   
+            const newTrack = await tracksService.create(body);
+            return res.status(newTrack.status).json(newTrack);
+    },
 }  
 
 
@@ -62,18 +66,18 @@ const create = async (req,res) => {
 };
 
 
-const update = async (req,res) => {
-    try {
+// const update = async (req,res) => {
+//     try {
      
-        const {id, ...body} = matchedData(req);
-        const data = await tracksModel.findOneAndUpdate(id.body);
-        console.log(body);
-        res.send({data})
+//         const {id, ...body} = matchedData(req);
+//         const data = await tracksModel.findOneAndUpdate(id.body);
+//         console.log(body);
+//         res.send({data})
         
-    } catch (err) {
-        handleHttpError(res,'Error update');
-    }
-};
+//     } catch (err) {
+//         handleHttpError(res,'Error update');
+//     }
+// };
 
 
 // const remove = async (req,res) => {

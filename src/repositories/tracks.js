@@ -9,5 +9,9 @@ module.exports = {
         const track = await tracksModel.findById(id);
         return track;
     },
+    create: async (data) => {
+        const newTrack = await tracksModel.create(data);
+        return newTrack;
+    }
 }
 

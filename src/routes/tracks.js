@@ -9,7 +9,7 @@ router.get('/',auth, tracksController.getAll);
 
 router.get('/:id',auth,validatorGetItem, tracksController.getOne);
 
-// router.post('/',auth,checkRol(['admin']),validatorCreate, create);
+router.post('/',auth,checkRol(['admin']),validatorCreate, tracksController.create);
 
 // router.put('/:id',auth,checkRol(['admin']),validatorGetItem,validatorCreate, update);
 
