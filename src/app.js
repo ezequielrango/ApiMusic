@@ -23,9 +23,9 @@ app.use(express.static(path.join(__dirname, 'storage')));
 morganBody(app, {
     noColors : true,
     stream: loggerStream,
-    skip : function(req,res){
-        return res.statusCode < 400;
-    },
+    // skip : function(req,res){
+    //     return res.statusCode < 400;
+    // },
 });
 
 app.use('/api',require("./routes"));

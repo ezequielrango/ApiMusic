@@ -23,6 +23,7 @@ module.exports = {
     create: async (req,res) => {
             const body = matchedData(req);   
             const newTrack = await tracksService.create(body);
+
             return res.status(newTrack.status).json(newTrack);
     },
 }  
